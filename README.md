@@ -50,15 +50,15 @@
             <h2>連結</h2>
             <div class="link-cards">
                 <a href="https://www.instagram.com/lyf_mttbb?igsh=aHU4aTY3aXA0d25s&utm_source=qr" target="_blank" rel="noopener" class="link-card link-card-ig">
-                    <span class="link-icon"><img src="icons/instagram.png" alt="Instagram"></span>
+                    <span class="link-icon"><img src="instagram.png" alt="Instagram"></span>
                     <span class="link-label">我的哀居</span>
                 </a>
                 <a href="https://www.facebook.com/profile.php?id=61585814810652" target="_blank" rel="noopener" class="link-card link-card-fb">
-                    <span class="link-icon"><img src="icons/facebook.png" alt="Facebook"></span>
+                    <span class="link-icon"><img src="facebook.png" alt="Facebook"></span>
                     <span class="link-label">我的唉服逼</span>
                 </a>
                 <a href="http://www.youtube.com/@%E6%88%91%E8%AA%B0-d5i" target="_blank" rel="noopener" class="link-card link-card-yt">
-                    <span class="link-icon"><img src="icons/youtube.png" alt="YouTube"></span>
+                    <span class="link-icon"><img src="youtube.png" alt="YouTube"></span>
                     <span class="link-label">我的油土</span>
                 </a>
             </div>
