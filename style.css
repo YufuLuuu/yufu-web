@@ -1,4 +1,4 @@
-/* 一頁式個人頁：頂部導覽 + 橫幅 + 區塊卡片 */
+
 
 * {
     box-sizing: border-box;
@@ -13,7 +13,83 @@ body {
     background-color: #fafafa;
 }
 
-/* 頂部導覽列 */
+body.is-locked {
+    overflow: hidden;
+}
+
+.intro-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    place-items: center;
+    padding: 2rem 1.5rem;
+    background: rgba(15, 15, 15, 0.92);
+    color: #fff;
+    text-align: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 450ms ease, visibility 0ms linear 0ms;
+}
+
+.intro-content {
+    max-width: 900px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.intro-overlay.is-ready .intro-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.intro-en {
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    white-space: pre-wrap;
+}
+
+.intro-zh {
+    margin: 0.5rem 0 0 0;
+    font-weight: 500;
+    opacity: 0.9;
+    font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+    white-space: pre-wrap;
+}
+
+.intro-en.is-typing::after,
+.intro-zh.is-typing::after {
+    content: "";
+    display: inline-block;
+    width: 0.08em;
+    height: 1em;
+    margin-left: 0.12em;
+    background: currentColor;
+    transform: translateY(0.12em);
+    animation: caret-blink 900ms steps(1, end) infinite;
+}
+
+@keyframes caret-blink {
+    50% { opacity: 0; }
+}
+
+.intro-overlay.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 450ms ease, visibility 0ms linear 450ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .intro-overlay,
+    .intro-overlay.is-hidden {
+        transition: none;
+    }
+}
+
+
 .topbar {
     display: flex;
     justify-content: space-between;
@@ -41,13 +117,15 @@ body {
     color: #fff;
 }
 
-/* 橫幅區：左右分欄 - 哈密瓜綠 */
+
+.hr,
 .hero {
     background: linear-gradient(135deg, #a8e6cf 0%, #7dd3a8 100%);
     color: #2d4a3e;
     padding: 3rem 1.5rem;
 }
 
+.hri,
 .hero-inner {
     max-width: 900px;
     margin: 0 auto;
@@ -58,6 +136,7 @@ body {
     gap: 1.5rem;
 }
 
+.hrt h1,
 .hero-text h1 {
     margin: 0 0 0.25rem 0;
     font-size: 2.75rem;
@@ -69,7 +148,8 @@ body {
     opacity: 0.9;
 }
 
-.hero-photo img {
+.hrp img,
+.hero-avatar img {
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -77,14 +157,16 @@ body {
     border: 3px solid rgba(45,74,62,0.3);
 }
 
-/* 主內容：卡片區塊 */
+
 .main {
     max-width: 900px;
     margin: 0 auto;
     padding: 2rem 1.5rem;
 }
 
-.block {
+.block,
+.bab,
+.about-card {
     background: #fff;
     border-radius: 8px;
     padding: 1.5rem;
@@ -92,20 +174,24 @@ body {
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
-.block h2 {
+.block h2,
+.bab h2,
+.about-card h2 {
     margin: 0 0 1rem 0;
     font-size: 1.5rem;
     color: #333;
 }
 
-.block p {
+.block p,
+.bab p,
+.about-card p {
     margin: 0;
     color: #555;
     line-height: 1.6;
     font-size: 1.1rem;
 }
 
-/* 學經歷區塊 */
+
 .exp-subtitle {
     font-size: 1.15rem;
     color: #444;
@@ -127,7 +213,52 @@ body {
     line-height: 1.5;
 }
 
-/* 連結區：左側色條 + 圖示，有風格 */
+.poster-wrap {
+    margin-top: 0.75rem;
+}
+
+.poster-wrap img {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin: 0 auto;
+
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+
+.embed-wrap {
+    margin-top: 0.75rem;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    background: #fff;
+}
+
+.embed-wrap iframe {
+    display: block;
+    width: 100%;
+    height: 480px;
+    border: 0;
+}
+
+.embed-fallback {
+    margin-top: 0.75rem;
+    font-size: 1rem;
+    color: #666;
+}
+
+.embed-fallback a {
+    color: #2d4a3e;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+
 .link-cards {
     display: flex;
     flex-direction: column;
@@ -174,7 +305,7 @@ body {
     letter-spacing: 0.02em;
 }
 
-/* 各平台左側色條 */
+
 .link-card-ig { border-left-color: #e4405f; }
 .link-card-ig:hover { border-left-color: #c13584; }
 
@@ -184,7 +315,7 @@ body {
 .link-card-yt { border-left-color: #ff0000; }
 .link-card-yt:hover { border-left-color: #cc0000; }
 
-/* 頁尾 */
+
 .footer {
     text-align: center;
     padding: 1.5rem;
